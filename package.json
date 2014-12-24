@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha"
   },
+  "dependencies": {
+    "es6-promise": "*"
+  },
   "devDependencies": {
     "mocha": "*",
     "expect.js": "*",
