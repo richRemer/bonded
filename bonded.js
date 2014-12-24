@@ -15,8 +15,9 @@ function bond(async, noerr, obj) {
 
     // resulting wrapper; accpets one less argument than original async call
     return function() {
-        // wrapper arguments
-        var args = Array.prototype.slice.call(arguments);
+        // wrapper arguments and calling context
+        var args = Array.prototype.slice.call(arguments),
+            context = this;
 
         // return a Promise which will be fulfilled by the async call
         return new Promise(function(resolve, reject) {
@@ -31,7 +32,7 @@ function bond(async, noerr, obj) {
             });
 
             // make async call
-            async.apply(obj, args);
+            async.apply(obj || context, args);
         });
     };
 }
@@ -77,9 +78,9 @@ function bycall(async, noerr, obj) {
   
     return function() {
         if (typeof arguments[arguments.length - 1] === "function")
-            async.apply(obj, arguments);
+            async.apply(obj || this, arguments);
         
-        else return bondedCall.apply(null, arguments);
+        else return bondedCall.apply(this, arguments);
     };
 }
 
