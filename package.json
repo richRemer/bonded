@@ -2,7 +2,7 @@
   "name": "bonded",
   "version": "0.0.1",
   "description": "Wrap Node.js style async callbacks in Promises",
-  "main": "index.js",
+  "main": "bonded.js",
   "scripts": {
     "test": "mocha"
   },
