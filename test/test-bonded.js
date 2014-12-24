@@ -45,3 +45,23 @@ describe("bonded.eventually", function() {
         });
     });
 });
+
+describe("bonded.bycall", function() {
+    var flexible = bonded.bycall(asyncFulfill);
+
+    it("should wrap so that call w/o callback returns Promise", function(done) {
+        var fulfill = flexible(42);
+        fulfill.then(function(arg) {
+            expect(arg).to.be(42);
+            done();
+        });
+    });
+    
+    it("should use original behavior if callback provided", function(done) {
+        flexible(42, function(err, arg) {
+            expect(err).to.not.be.ok();
+            expect(arg).to.be(42);
+            done();
+        });
+    });
+});
