@@ -6,6 +6,10 @@
   "scripts": {
     "test": "mocha"
   },
+  "devDependencies": {
+    "mocha": "*",
+    "expect.js": "*"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/richRemer/bonded.git"
