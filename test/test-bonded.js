@@ -34,3 +34,14 @@ describe("bonded.maybe", function() {
     });
 });
 
+describe("bonded.eventually", function() {
+    it("should wrap async receiver to return a Promise", function(done) {
+        var eventually = bonded.eventually(async),
+            resultEventually = eventually(42);
+        
+        resultEventually.then(function(result) {
+            expect(result).to.be(42);
+            done();
+        });
+    });
+});
